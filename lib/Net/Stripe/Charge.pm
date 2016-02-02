@@ -11,7 +11,7 @@ has 'created'             => (is => 'ro', isa => 'Maybe[Int]');
 has 'amount'              => (is => 'ro', isa => 'Maybe[Int]', required => 1);
 has 'currency'            => (is => 'ro', isa => 'Maybe[Str]', required => 1);
 has 'customer'            => (is => 'ro', isa => 'Maybe[Str]');
-has 'card'                => (is => 'ro', isa => 'Maybe[Net::Stripe::Token|Net::Stripe::Card|Str]');
+has 'source'              => (is => 'ro', isa => 'Maybe[Net::Stripe::Token|Net::Stripe::Card|Str]');
 has 'description'         => (is => 'ro', isa => 'Maybe[Str]');
 has 'livemode'            => (is => 'ro', isa => 'Maybe[Bool|Object]');
 has 'paid'                => (is => 'ro', isa => 'Maybe[Bool|Object]');
@@ -28,7 +28,7 @@ has 'capture'             => (is => 'ro', isa => 'Maybe[Bool|Object]');
 
 method form_fields {
     return (
-        $self->fields_for('card'),
+        $self->fields_for('source'),
         $self->form_fields_for_metadata(),
         (defined $self->capture) ? (capture => ($self->capture) ? 'true' : 'false') : (),
         map { $_ => $self->$_ }

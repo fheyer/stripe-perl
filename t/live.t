@@ -137,7 +137,7 @@ Charges: {
             $charge = $stripe->post_charge(
                 amount => 3300,
                 currency => 'usd',
-                card => $fake_card,
+                source => $fake_card,
                 description => 'Wikileaks donation',
             );
         } 'Created a charge object';
@@ -151,7 +151,7 @@ Charges: {
         ok $charge->paid, 'charge was paid';
 
         # Check out the returned card object
-        my $card = $charge->card;
+        my $card = $charge->source;
         isa_ok $card, 'Net::Stripe::Card';
         is $card->country, 'US', 'card country';
         is $card->exp_month, $future->month, 'card exp_month';
