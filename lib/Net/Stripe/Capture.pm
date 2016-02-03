@@ -11,7 +11,7 @@ has 'created'  => ( is => 'ro', isa => 'Maybe[Int]' );
 has 'amount'   => ( is => 'ro', isa => 'Maybe[Int]', required => 1 );
 has 'currency' => ( is => 'ro', isa => 'Maybe[Str]' );
 has 'customer' => ( is => 'ro', isa => 'Maybe[Str]' );
-has 'card' =>
+has 'source' =>
     ( is => 'ro', isa => 'Maybe[Net::Stripe::Token|Net::Stripe::Card|Str]' );
 has 'description'          => ( is => 'ro', isa => 'Maybe[Str]' );
 has 'livemode'             => ( is => 'ro', isa => 'Maybe[Bool|Object]' );
